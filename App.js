@@ -51,7 +51,7 @@ export default class Main extends Component {
             <Text style={[Calc.buttonText]}>8</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[Calc.button]} onPress={() => { this.setAns(9), this.setTopBar("7") }}>
+            <TouchableOpacity style={[Calc.button]} onPress={() => { this.setAns(9), this.setTopBar("9") }}>
             <Text style={[Calc.buttonText]}>9</Text>
             </TouchableOpacity>
 
@@ -103,7 +103,7 @@ export default class Main extends Component {
 
             <View style={[Calc.buttonRow]}>
             
-            <TouchableOpacity style={[Calc.button]} onPress={() => { this.setAns(7), this.setTopBar("7") }}>
+            <TouchableOpacity style={[Calc.button]} onPress={() => { this.setAns(0), this.setTopBar("0") }}>
             <Text style={[Calc.buttonText]}>0</Text>
             </TouchableOpacity>
 
