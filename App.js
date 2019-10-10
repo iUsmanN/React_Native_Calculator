@@ -25,8 +25,11 @@ export default class Main extends Component {
 
   getAns(value){
     if (this.state.showAns) {
-      this.setState({ans: eval(this.state.TopStr + value)})
-      console.log(this.state.TopStr + value)
+      try {
+        this.setState({ans: eval(this.state.TopStr + value)})  
+      } catch (error) {
+        this.setAns("err"), this.setState({TopStr: ""})
+      }
       this.setState({showAns: false})
     }
   }
