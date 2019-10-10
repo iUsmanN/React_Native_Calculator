@@ -8,79 +8,91 @@ export default class Main extends Component {
     super()
     this.state={
       ans:0,
-      str:''
+      TopStr:"",
+      showAns: false
     }
   }
 
   setAns(value) {
-    //this.setState({ans:value})
-    console.log(value)
+    this.setState({ans: value})
+    //console.log(value)
+  }
+
+  setTopBar(value) {
+    this.setState({TopStr: this.state.TopStr + value})
+    this.getAns(value)
+  }
+
+  getAns(value){
+    if (this.state.showAns) {
+      this.setState({ans: eval(this.state.TopStr + value)})
+      console.log(this.state.TopStr + value)
+      this.setState({showAns: false})
+    }
   }
 
   render(){
     return(
       <View style={Calc.all}>
-          <Text style={[Calc.topBar]}>{this.state.str}</Text>
+          <Text style={[Calc.topBar]}>{this.state.TopStr}</Text>
           <Text style={[Calc.bar]}>{this.state.ans}</Text>
           <View style={[Calc.buttons]}>
 
             <View style={[Calc.buttonRow]}>
             
-            <TouchableOpacity style={[Calc.button]} onPress={
-              this.setAns(7)
-              }>
+            <TouchableOpacity style={[Calc.button]} onPress={() => { this.setAns(7), this.setTopBar("7") }}>
             <Text style={[Calc.buttonText]}>7</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[Calc.button]} onPress={console.log('8')}>
+            <TouchableOpacity style={[Calc.button]} onPress={() => { this.setAns(8), this.setTopBar("8") }}>
             <Text style={[Calc.buttonText]}>8</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[Calc.button]} onPress={console.log('9')}>
+            <TouchableOpacity style={[Calc.button]} onPress={() => { this.setAns(9), this.setTopBar("7") }}>
             <Text style={[Calc.buttonText]}>9</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[Calc.button]} onPress={console.log('div')}>
-            <Text style={[Calc.buttonText]}>÷</Text>
+            <TouchableOpacity style={[Calc.button]} onPress={() => { this.setAns('/'), this.setTopBar("/"), this.setState({showAns: true}) }}>
+            <Text style={[Calc.buttonText]}>/</Text>
             </TouchableOpacity>
             
             </View>
 
             <View style={[Calc.buttonRow]}>
             
-            <TouchableOpacity style={[Calc.button]} onPress={console.log('4')}>
+            <TouchableOpacity style={[Calc.button]} onPress={() => { this.setAns(4), this.setTopBar("4") }}>
             <Text style={[Calc.buttonText]}>4</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[Calc.button]} onPress={console.log('5')}>
+            <TouchableOpacity style={[Calc.button]} onPress={() => { this.setAns(5), this.setTopBar("5") }}>
             <Text style={[Calc.buttonText]}>5</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[Calc.button]} onPress={console.log('6')}>
+            <TouchableOpacity style={[Calc.button]} onPress={() => { this.setAns(6), this.setTopBar("6") }}>
             <Text style={[Calc.buttonText]}>6</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[Calc.button]} onPress={console.log('×')}>
-            <Text style={[Calc.buttonText]}>×</Text>
+            <TouchableOpacity style={[Calc.button]} onPress={() => { this.setAns('×'), this.setTopBar("*"), this.setState({showAns: true}) }}>
+            <Text style={[Calc.buttonText]}>x</Text>
             </TouchableOpacity>
 
             </View>
 
             <View style={[Calc.buttonRow]}>
             
-            <TouchableOpacity style={[Calc.button]} onPress={console.log('1')}>
+            <TouchableOpacity style={[Calc.button]} onPress={() => { this.setAns(1), this.setTopBar("1") }}>
             <Text style={[Calc.buttonText]}>1</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[Calc.button]} onPress={console.log('2')}>
+            <TouchableOpacity style={[Calc.button]} onPress={() => { this.setAns(2), this.setTopBar("2") }}>
             <Text style={[Calc.buttonText]}>2</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[Calc.button]} onPress={console.log('3')}>
+            <TouchableOpacity style={[Calc.button]} onPress={() => { this.setAns(3), this.setTopBar("3") }}>
             <Text style={[Calc.buttonText]}>3</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[Calc.button]} onPress={console.log('-')}>
+            <TouchableOpacity style={[Calc.button]} onPress={() => { this.setAns('-'), this.setTopBar("-"), this.setState({showAns: true}) }}>
             <Text style={[Calc.buttonText]}>-</Text>
             </TouchableOpacity>
 
@@ -88,15 +100,15 @@ export default class Main extends Component {
 
             <View style={[Calc.buttonRow]}>
             
-            <TouchableOpacity style={[Calc.button]} onPress={console.log('0')}>
+            <TouchableOpacity style={[Calc.button]} onPress={() => { this.setAns(7), this.setTopBar("7") }}>
             <Text style={[Calc.buttonText]}>0</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[Calc.buttonEqual]} onPress={console.log('=')}>
-            <Text style={[Calc.buttonText]}>=</Text>
+            <TouchableOpacity style={[Calc.buttonEqual]} onPress={() => { this.setAns(0), this.setState({TopStr: ""}) }}>
+            <Text style={[Calc.buttonText]}>C</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[Calc.button]} onPress={console.log('+')}>
+            <TouchableOpacity style={[Calc.button]} onPress={() => { this.setAns('+'), this.setTopBar("+"), this.setState({showAns: true}) }}>
             <Text style={[Calc.buttonText]}>+</Text>
             </TouchableOpacity>
 
@@ -112,8 +124,9 @@ const Calc = StyleSheet.create({
     flex:1.8,
     marginHorizontal: 20,
     backgroundColor: 'white',
-    fontSize: 200,
+    fontSize: 206,
     marginBottom: 10,
+    textAlign: 'right'
   },
 
   topBar: {
@@ -163,7 +176,7 @@ const Calc = StyleSheet.create({
 
   buttonEqual: {
     flex: 2,
-    backgroundColor: 'red',
+    backgroundColor: 'orange',
     margin: 10,
     borderRadius:8
   }
